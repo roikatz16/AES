@@ -29,6 +29,7 @@ public class Operation {
             }
             rows.add(temp);
         }
+
         byte[][] ans=new byte[rows.size()][];
         for(int i=0;i<rows.size();i++){
                 ans[i]=rows.get(i);

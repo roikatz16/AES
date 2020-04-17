@@ -4,21 +4,51 @@ import java.nio.file.Files;
 
 public class Main {
     public static void main(String[] args) {
+        String what_to_do = args[0];
+
+        if(what_to_do.equals("-d") || what_to_do.equals("-e"))
+            encryptDecrypt(what_to_do, args);
+        else if(what_to_do.equals("-b"))
+            breakEncryption(args);
 
         String flag=args[0];//1?
-        if(flag.equals("-e") || flag.equals("-d")){
-            try {
-                String keyPath = args[2];
-                String inputPath = args[4];
-                String outputPath = args[6];
-            }catch (Exception e){
-                System.out.println("One or more of the details missing");
-            }
 
+    }
 
+    private static void encryptDecrypt(String what_to_do, String[] paths){
+        String pathToKeyFile = "";
+        String pathToInputFile = "";
+        String pathToOutputFile = "";
+
+        for (int i = 0; i < paths.length; i++) {
+            if(paths[i].equals("-k"))
+                pathToKeyFile = paths[i+1];
+            else if(paths[i].equals("-i"))
+                pathToInputFile = paths[i+1];
+            else if(paths[i].equals("-o"))
+                pathToOutputFile = paths[i+1];
         }
-        System.out.println("by");
 
+        byte[] key = transformFileToByteArray(pathToKeyFile);
+        byte[] message = transformFileToByteArray(pathToInputFile);
+        AES aes = new AES(key);//todo: change AES to 3AES
+        byte [] cypher = aes.encrypt(message);
+
+    }
+
+    private static void breakEncryption(String[] paths){
+        String pathToMessage;
+        String pathToCipher;
+        String pathToOutput;
+
+        for (int i = 0; i < paths.length; i++) {
+            if(paths[i].equals("-m"))
+                pathToMessage=paths[i+1];
+            else if(paths[i].equals("-c"))
+                pathToCipher=paths[i+1];
+            else if(paths[i].equals("-o"))
+                pathToOutput=paths[i+1];
+        }
 
     }
 

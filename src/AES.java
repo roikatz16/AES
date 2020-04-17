@@ -25,7 +25,7 @@ public class AES {
     public byte[] decrypt (byte[] encryptedMessage){
         this.cypher=encryptedMessage;
         byte[][] splitMessage=Operation.splitText(encryptedMessage,key.length);
-        byte[][] decrypted=xorWithKey(splitMessage);
+        byte[][] decrypted= xorWithKey(splitMessage);
         byte[][] shiftedRows=Operation.shiftRows(splitMessage, Direction.Left);
         byte[] ans=Operation.transforming2DArrayToOne(shiftedRows);
         this.plaintext=ans;
