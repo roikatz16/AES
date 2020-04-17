@@ -1,13 +1,11 @@
 public class AES3 {
 
     private AES [] ASEs;
-    private byte[][] keys;
     private byte[][] splittedMessage;
 
 
-    public AES3 (byte[] totalKey, byte[] message) {
+    public AES3 (byte[][] keys, byte[] message) {
         ASEs = new AES[3];
-        keys = Operation.transformingToMatrix(totalKey, 16);
         ASEs[0] = new AES(keys[0]);
         ASEs[1] = new AES(keys[1]);
         ASEs[2] = new AES(keys[2]);

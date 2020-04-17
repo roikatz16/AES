@@ -3,6 +3,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Operation {
 
@@ -40,6 +41,13 @@ public class Operation {
             }
         }
         return ans;
+    }
+
+    public static byte[] randomKey(int size){
+        Random rd = new Random();
+        byte[] key = new byte[size];
+        rd.nextBytes(key);
+        return key;
     }
 
     public static byte[] transformingToVector(byte[][] array){

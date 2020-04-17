@@ -9,9 +9,9 @@ public class Main {
     }
 
     private static void encryptDecrypt(String what_to_do, String[] paths) throws Exception {
-        String pathToKeyFile = "";
-        String pathToInputFile = "";
-        String pathToOutputFile = "";
+        String pathToKeyFile = null;
+        String pathToInputFile = null;
+        String pathToOutputFile = null;
 
         for (int i = 0; i < paths.length; i++) {
             if(paths[i].equals("-k"))
@@ -23,8 +23,9 @@ public class Main {
         }
 
         byte[] totalKey = Operation.readFileAsBytes(pathToKeyFile);
+        byte[][] keys = Operation.transformingToMatrix(totalKey, 16);
         byte[] message = Operation.readFileAsBytes(pathToInputFile);
-       AES3 aes3 = new AES3(totalKey, message);
+        AES3 aes3 = new AES3(keys, message);
         byte[] output;
         if(what_to_do.equals("-e")){
             output =  aes3.encrypt();
@@ -35,19 +36,37 @@ public class Main {
         Operation.writeByesToFile(pathToOutputFile, output);
     }
 
-    private static void breakEncryption(String[] paths){//todo!
-        String pathToMessage;
-        String pathToCipher;
-        String pathToOutput;
+    private static void breakEncryption(String[] paths) throws Exception {//todo!
+        String pathToPlainText = null;
+        String pathToCipher = null;
+        String pathToOutput = null;
 
         for (int i = 0; i < paths.length; i++) {
             if(paths[i].equals("-m"))
-                pathToMessage=paths[i+1];
+                pathToPlainText=paths[i+1];
             else if(paths[i].equals("-c"))
                 pathToCipher=paths[i+1];
             else if(paths[i].equals("-o"))
                 pathToOutput=paths[i+1];
         }
+
+        byte[] plainText = Operation.readFileAsBytes(pathToPlainText);
+        byte[] Cypher = Operation.readFileAsBytes(pathToCipher);
+        byte[] plainTextBlock = new byte[16];
+        byte[] CypherTextBlock = new byte[16];
+        for(int i=0; i<16;i++){
+            plainTextBlock[i] = plainText[i];
+            CypherTextBlock[i] = Cypher[i];
+        }
+
+        byte[] K1 = Operation.randomKey(16);
+        byte[] K2 = Operation.randomKey(16);
+        byte[][] keys = new byte[][]{K1, K2, CypherTextBlock};
+        AES3 aes3 = new AES3(keys, plainTextBlock);
+        byte[] K3 = aes3.encrypt();
+        keys[2]= K3;
+        byte[] output = Operation.transformingToVector(keys);
+        Operation.writeByesToFile(pathToOutput, output);
     }
 
 
