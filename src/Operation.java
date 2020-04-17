@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -6,17 +7,21 @@ import java.util.ArrayList;
 public class Operation {
 
     public static byte[] xor(byte[] arr1, byte[] arr2) throws Exception {
-        if(arr1.length!=arr2.length)
+        if(arr1.length!=arr2.length) {
             throw new Exception("The arrays are not the same size");
-        int size=arr1.length;
-        byte[] xor = new byte[size];
-
+        }
+        byte[] xor = new byte[arr1.length];
+        int i=0;
+        for (byte b : arr1) {
+            xor[i] = (byte) (b ^ arr2[i]); // '^' is the xor operator (java)
+            i++;
+        }
         return xor;
     }
 
 
 
-    public static byte[][] shiftRows(byte[][]message, AES.Direction direction){
+    public static byte[][] shiftColumns(byte[][]message, AES.Direction direction){//todo: change!
         byte[][] ans= new byte[message.length][message[0].length];
         if(direction.equals(AES.Direction.Up)){
             for(int i=1;i<message.length;i++){
@@ -68,7 +73,7 @@ public class Operation {
         return ans;
     }
 
-    public static byte[] transformFileToByteArray(String filePath){
+    public static byte[] readFileAsBytes(String filePath){
         byte[] ans=null;
         File file= new File(filePath);
         try {
@@ -78,6 +83,12 @@ public class Operation {
         }
         return ans;
     }
+
+    public static void writeByesToFile(String filePath, byte[] output) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+        fileOutputStream.write(output);
+    }
+
 
 
 }

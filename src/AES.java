@@ -11,36 +11,36 @@ public class AES {
         this.plaintext=null;
     }
 
-    public byte[] encrypt(byte[] message) throws Exception {
-        this.plaintext=message;
+    public byte[] encrypt(byte[] block) throws Exception {
+        this.plaintext=block;
         /* 1. convert to matrix  */
-        byte[][] matrix = Operation.transformingToMatrix(message,4);
+        byte[][] matrix = Operation.transformingToMatrix(block,4);
 
         /* 2. shift columns  */
-        byte[][] shiftedColumns = Operation.shiftRows(matrix, Direction.Up);//todo: change shiftRows method
+        byte[][] shiftedColumns = Operation.shiftColumns(matrix, Direction.Up);//todo: change shiftRows method
 
         /* 3. convert back to vector  */
        byte[] backToVector = Operation.transformingToVector(shiftedColumns);
 
        /* 4. xor xor gossip girl */
-        byte[] xored = Operation.xor(backToVector, key);//todo: change xor method
+        byte[] xored = Operation.xor(backToVector, key);
 
         this.cypher = xored;
         return cypher;
     }
 
 
-    public byte[] decrypt (byte[] encryptedMessage) throws Exception {
-        this.cypher=encryptedMessage;
+    public byte[] decrypt (byte[] block) throws Exception {
+        this.cypher=block;
 
         /* 1. xor xor gossip girl  */
-        byte[] xored = Operation.xor(cypher, key);//todo: canal
+        byte[] xored = Operation.xor(cypher, key);
 
         /* 2. convert to matrix  */
         byte[][] matrix = Operation.transformingToMatrix(xored, 4);
 
         /* 3. shift columns  */
-        byte[][] shiftedColumns = Operation.shiftRows(matrix, Direction.Down);
+        byte[][] shiftedColumns = Operation.shiftColumns(matrix, Direction.Down);
 
         /* 3. convert back to vector  */
         byte[] backToVector = Operation.transformingToVector(shiftedColumns);
