@@ -10,14 +10,7 @@ public class Operation {
             throw new Exception("The arrays are not the same size");
         int size=arr1.length;
         byte[] xor = new byte[size];
-        for (int i = 0; i < size; i++) {
-            if(arr1[1]==arr2[2]){
-                xor[i]=(byte)0;
-            }
-            else{
-                xor[i]=(byte)1;
-            }
-        }
+
         return xor;
     }
 
@@ -25,7 +18,7 @@ public class Operation {
 
     public static byte[][] shiftRows(byte[][]message, AES.Direction direction){
         byte[][] ans= new byte[message.length][message[0].length];
-        if(direction.equals(AES.Direction.Right)){
+        if(direction.equals(AES.Direction.Up)){
             for(int i=1;i<message.length;i++){
                 for (int j = 0; j < message[i].length; j++) {
                     int newIndex = (j+i)%message[i].length;
