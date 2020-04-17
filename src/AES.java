@@ -13,10 +13,10 @@ public class AES {
 
     public byte[] encrypt(byte[] message){
         this.plaintext=message;
-        byte[][] splitMessage=Operation.splitText(message,key.length);
+        byte[][] splitMessage=Operation.transformingToMatrix(message,key.length);
         byte[][] shiftedRows=Operation.shiftRows(splitMessage, Direction.Right);
         byte[][] encrypted=xorWithKey(shiftedRows);
-        byte[] ans=Operation.transforming2DArrayToOne(encrypted);
+        byte[] ans=Operation.transformingToVector(encrypted);
         this.cypher=ans;
         return ans;
     }
@@ -24,10 +24,10 @@ public class AES {
 
     public byte[] decrypt (byte[] encryptedMessage){
         this.cypher=encryptedMessage;
-        byte[][] splitMessage=Operation.splitText(encryptedMessage,key.length);
+        byte[][] splitMessage=Operation.transformingToMatrix(encryptedMessage,key.length);
         byte[][] decrypted= xorWithKey(splitMessage);
         byte[][] shiftedRows=Operation.shiftRows(splitMessage, Direction.Left);
-        byte[] ans=Operation.transforming2DArrayToOne(shiftedRows);
+        byte[] ans=Operation.transformingToVector(shiftedRows);
         this.plaintext=ans;
         return ans;
     }

@@ -10,9 +10,6 @@ public class Main {
             encryptDecrypt(what_to_do, args);
         else if(what_to_do.equals("-b"))
             breakEncryption(args);
-
-        String flag=args[0];//1?
-
     }
 
     private static void encryptDecrypt(String what_to_do, String[] paths){
@@ -29,9 +26,10 @@ public class Main {
                 pathToOutputFile = paths[i+1];
         }
 
-        byte[] key = transformFileToByteArray(pathToKeyFile);
-        byte[] message = transformFileToByteArray(pathToInputFile);
-        AES aes = new AES(key);//todo: change AES to 3AES
+        byte[] totalKey = Operation.transformFileToByteArray(pathToKeyFile);
+        byte[][] keys = Operation.transformingToMatrix(totalKey, 16);
+        byte[] message = Operation.transformFileToByteArray(pathToInputFile);
+        AES aes = new AES(totalKey);//todo: change AES to 3AES
         byte [] cypher = aes.encrypt(message);
 
     }
@@ -50,18 +48,10 @@ public class Main {
                 pathToOutput=paths[i+1];
         }
 
+
     }
 
-    private static byte[] transformFileToByteArray(String filePath){
-        byte[] ans=null;
-        File file= new File(filePath);
-        try {
-            ans= Files.readAllBytes(file.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return ans;
-    }
+
 
     private byte[][] findKeys(String keyPath){
         return null;
