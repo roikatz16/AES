@@ -2,10 +2,13 @@ public class Main {
     public static void main(String[] args) throws Exception {
         String what_to_do = args[0];
 
+
         if(what_to_do.equals("-d") || what_to_do.equals("-e"))
             encryptDecrypt(what_to_do, args);
         else if(what_to_do.equals("-b"))
             breakEncryption(args);
+
+
     }
 
     private static void encryptDecrypt(String what_to_do, String[] paths) throws Exception {

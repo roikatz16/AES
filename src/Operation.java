@@ -24,20 +24,25 @@ public class Operation {
 
     public static byte[][] shiftColumns(byte[][]message, AES.Direction direction){//todo: change!
         byte[][] ans= new byte[message.length][message[0].length];
+
         if(direction.equals(AES.Direction.Up)){
-            for(int i=1;i<message.length;i++){
-                for (int j = 0; j < message[i].length; j++) {
-                    int newIndex = (j+i)%message[i].length;
-                    ans[newIndex] = message[i];
+            int flag=4;
+            for(int i=0;i<message.length;i++){//col
+                for (int j = 0; j < message[i].length; j++) {//row
+                    int newIndex = (j+flag)%message[i].length;
+                    ans[newIndex][i] = message[j][i];
                 }
+                flag--;
             }
         }
         else{
-            for(int i=1;i<message.length;i++){
-                for (int j = 0; j < message[i].length; j++) {
-                    int newIndex = (j-i+ message[i].length)% message[i].length;
-                    ans[newIndex] = message[i];
+            int flag=0;
+            for(int i=0;i<message.length;i++){//col
+                for (int j = 0; j < message[i].length; j++) {//row
+                    int newIndex =( (j+flag)% message[i].length);
+                    ans[newIndex][i] = message[j][i];
                 }
+                flag++;
             }
         }
         return ans;
