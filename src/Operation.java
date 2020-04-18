@@ -26,7 +26,7 @@ public class Operation {
         byte[][] ans= new byte[message.length][message[0].length];
 
         if(direction.equals(AES.Direction.Up)){
-            int flag=4;
+            int flag=message[0].length;
             for(int i=0;i<message.length;i++){//col
                 for (int j = 0; j < message[i].length; j++) {//row
                     int newIndex = (j+flag)%message[i].length;
