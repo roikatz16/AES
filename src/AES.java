@@ -17,7 +17,7 @@ public class AES {
         byte[][] matrix = Operation.transformingToMatrix(block,4);
 
         /* 2. shift columns  */
-        byte[][] shiftedColumns = Operation.shiftColumns(matrix, Direction.Up);//todo: change shiftRows method
+        byte[][] shiftedColumns = Operation.shiftColumns(matrix, Direction.Up);
 
         /* 3. convert back to vector  */
        byte[] backToVector = Operation.transformingToVector(shiftedColumns);
@@ -72,16 +72,4 @@ public class AES {
     public void setCypher(byte[] cypher) {
         this.cypher = cypher;
     }
-
-   /* private byte[][] xorWithKey(byte[][] shiftedRows) {
-        byte[][] ans = new byte[shiftedRows.length][];
-        for (int i = 0; i < ans.length; i++) {
-            try {
-                ans[i] = Operation.xor(shiftedRows[i],this.key);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return ans;
-    }*/
 }

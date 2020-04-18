@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,7 +23,7 @@ public class Operation {
 
 
 
-    public static byte[][] shiftColumns(byte[][]message, AES.Direction direction){//todo: change!
+    public static byte[][] shiftColumns(byte[][]message, AES.Direction direction){
         byte[][] ans= new byte[message.length][message[0].length];
 
         if(direction.equals(AES.Direction.Up)){
@@ -86,7 +87,7 @@ public class Operation {
         return ans;
     }
 
-    public static byte[] readFileAsBytes(String filePath){
+    public static byte[] readFileAsBytes(String filePath) throws IOException {
         byte[] ans=null;
         File file= new File(filePath);
         try {
@@ -94,6 +95,7 @@ public class Operation {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return ans;
     }
 

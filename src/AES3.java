@@ -40,9 +40,9 @@ public class AES3 {
     }
 
     private byte[] decryptBlock(byte[] block) throws Exception {
-        byte[] cypher2 = ASEs[0].decrypt(block);
+        byte[] cypher2 = ASEs[2].decrypt(block);
         byte[] cypher1 = ASEs[1].decrypt(cypher2);
-        byte[] plaintext = ASEs[2].decrypt(cypher1);
+        byte[] plaintext = ASEs[0].decrypt(cypher1);
 
         return plaintext;
     }

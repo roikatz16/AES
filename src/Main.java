@@ -1,3 +1,5 @@
+import java.nio.charset.StandardCharsets;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         String what_to_do = args[0];
@@ -32,14 +34,19 @@ public class Main {
         byte[] output;
         if(what_to_do.equals("-e")){
             output =  aes3.encrypt();
+            String str = new String(output, StandardCharsets.UTF_8);
+            System.out.println(str);
         }
         else {
             output =  aes3.decrypt();
+            //String str = new String(output, StandardCharsets.UTF_8);
+            //System.out.println(str);
+
         }
         Operation.writeByesToFile(pathToOutputFile, output);
     }
 
-    private static void breakEncryption(String[] paths) throws Exception {//todo!
+    private static void breakEncryption(String[] paths) throws Exception {//todo: test!
         String pathToPlainText = null;
         String pathToCipher = null;
         String pathToOutput = null;
@@ -54,12 +61,17 @@ public class Main {
         }
 
         byte[] plainText = Operation.readFileAsBytes(pathToPlainText);
-        byte[] Cypher = Operation.readFileAsBytes(pathToCipher);
+        byte[] cypher = Operation.readFileAsBytes(pathToCipher);
+        String str = new String(cypher, StandardCharsets.UTF_8);
+        System.out.println(str);
+        System.out.println();
+        System.out.println("----------------");
+        System.out.println();
         byte[] plainTextBlock = new byte[16];
         byte[] CypherTextBlock = new byte[16];
-        for(int i=0; i<16;i++){
+        for(int i=0; i<16; i++){
             plainTextBlock[i] = plainText[i];
-            CypherTextBlock[i] = Cypher[i];
+            CypherTextBlock[i] = cypher[i];
         }
 
         byte[] K1 = Operation.randomKey(16);
