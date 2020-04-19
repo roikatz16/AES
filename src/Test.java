@@ -8,7 +8,7 @@ public class Test {
        // testXor();
         //testShiftColumns();
         //testTransforms();
-        //testEncryption();
+//        testEncryption();
         breakEncryption();
     }
 
@@ -20,17 +20,17 @@ public class Test {
         arguments[3] = "-c";
         arguments[4] = "C:/Users/odeya/Desktop/AES test files/cipher_long";
         arguments[5] = "-o";
-        arguments[6] = "C:/Users/odeya/Desktop/AES test files/test_output3";
+        arguments[6] = "C:/Users/odeya/Desktop/AES test files/test_output4";
         Main.main(arguments);
 
         String[] arguments2 = new String[7];
         arguments2[0] = "-e";
         arguments2[1] = "-k";
-        arguments2[2] = "C:/Users/odeya/Desktop/AES test files/test_output3";
+        arguments2[2] = "C:/Users/odeya/Desktop/AES test files/test_output4";
         arguments2[3] = "-i";
         arguments2[4] = "C:/Users/odeya/Desktop/AES test files/message_long";
         arguments2[5] = "-o";
-        arguments2[6] = "C:/Users/odeya/Desktop/AES test files/test_output";
+        arguments2[6] = "C:/Users/odeya/Desktop/AES test files/test_please";
         Main.main(arguments2);
     }
 
@@ -40,7 +40,7 @@ public class Test {
         arguments[1] = "-k";
         arguments[2] = "C:/Users/odeya/Desktop/AES test files/key_short";
         arguments[3] = "-i";
-        arguments[4] = "C:/Users/odeya/Desktop/AES test files/message_long";
+        arguments[4] = "C:/Users/odeya/Desktop/AES test files/message_short";
         arguments[5] = "-o";
         arguments[6] = "C:/Users/odeya/Desktop/AES test files/test_output";
         Main.main(arguments);

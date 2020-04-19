@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -49,9 +50,8 @@ public class Operation {
         return ans;
     }
 
-    public static byte[] randomKey(int size){
+    public static byte[] randomKey(byte[] key){
         Random rd = new Random();
-        byte[] key = new byte[size];
         rd.nextBytes(key);
         return key;
     }
@@ -96,13 +96,16 @@ public class Operation {
             e.printStackTrace();
         }
 
+
         return ans;
     }
 
     public static void writeByesToFile(String filePath, byte[] output) throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-        fileOutputStream.write(output);
-    }
+        File file = new File(filePath);
+        OutputStream os = new FileOutputStream(file);
+        os.write(output);
+        os.close();
+        }
 
 
 
