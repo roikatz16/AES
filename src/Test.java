@@ -10,27 +10,28 @@ public class Test {
         //testTransforms();
 //        testEncryption();
         breakEncryption();
+        //matrixTran();
     }
 
     public static void breakEncryption() throws Exception {
         String[] arguments = new String[7];
         arguments[0] = "-b";
         arguments[1] = "-m";
-        arguments[2] = "C:/Users/odeya/Desktop/AES test files/message_long";
+        arguments[2] = "C:/Users/Yasmin/Desktop/AES3_test_files/test files/message_long";
         arguments[3] = "-c";
-        arguments[4] = "C:/Users/odeya/Desktop/AES test files/cipher_long";
+        arguments[4] = "C:/Users/Yasmin/Desktop/AES3_test_files/test files/cipher_long";
         arguments[5] = "-o";
-        arguments[6] = "C:/Users/odeya/Desktop/AES test files/test_output4";
+        arguments[6] = "C:/Users/Yasmin/Desktop/AES3_test_files/test files/test_output4";
         Main.main(arguments);
 
         String[] arguments2 = new String[7];
         arguments2[0] = "-e";
         arguments2[1] = "-k";
-        arguments2[2] = "C:/Users/odeya/Desktop/AES test files/test_output4";
+        arguments2[2] = "C:/Users/Yasmin/Desktop/AES3_test_files/test files/test_output4";
         arguments2[3] = "-i";
-        arguments2[4] = "C:/Users/odeya/Desktop/AES test files/message_long";
+        arguments2[4] = "C:/Users/Yasmin/Desktop/AES3_test_files/test files/message_long";
         arguments2[5] = "-o";
-        arguments2[6] = "C:/Users/odeya/Desktop/AES test files/test_please";
+        arguments2[6] = "C:/Users/Yasmin/Desktop/AES3_test_files/test files/test_please";
         Main.main(arguments2);
     }
 
@@ -142,6 +143,40 @@ public class Test {
     public static void print2dByteArray(byte[][] array){
         for(int i=0; i< array.length;i++){
             printByteArray( array[i] );
+            System.out.println();
+        }
+    }
+
+    /**
+     * tets
+     */
+    public static void matrixTran(){
+        byte[]temp={1,2,3,4};
+        byte[][] ans=new byte[4][4];
+        for (int i=0;i<4;i++){
+            ans[i]=temp;
+        }
+        for (int i=0;i<4;i++){
+            for(int j=0;j<4;j++){
+                System.out.print(ans[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println("____________________________________________");
+        ans=Operation.matrixTransition1(ans);
+        for (int i=0;i<4;i++){
+            for(int j=0;j<4;j++){
+                System.out.print(ans[i][j]);
+            }
+            System.out.println();
+        }
+
+        System.out.println("____________________________________________");
+        ans=Operation.matrixTransition2(ans);
+        for (int i=0;i<4;i++){
+            for(int j=0;j<4;j++){
+                System.out.print(ans[i][j]);
+            }
             System.out.println();
         }
     }

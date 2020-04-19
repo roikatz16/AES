@@ -105,8 +105,26 @@ public class Operation {
         OutputStream os = new FileOutputStream(file);
         os.write(output);
         os.close();
+    }
+
+    public static byte[][] matrixTransition1(byte[][]matrix){
+        byte[][] temp = new byte[matrix.length][matrix[0].length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                temp[j][i] = matrix[i][j];
+            }
         }
+        return temp;
+    }
 
-
+    public static byte[][] matrixTransition2(byte[][]matrix){
+        byte[][] temp = new byte[matrix.length][matrix[0].length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                temp[i][j] = matrix[j][i];
+            }
+        }
+        return temp;
+    }
 
 }

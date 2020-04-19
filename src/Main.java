@@ -31,13 +31,13 @@ public class Main {
         byte[] output;
         if(what_to_do.equals("-e")){
             output =  aes3.encrypt();
-            /*String str = new String(output, StandardCharsets.UTF_8);
-            System.out.println(str);*/
+            String str = new String(output, StandardCharsets.UTF_8);
+            System.out.println(str);
         }
         else {
             output =  aes3.decrypt();
-//            String str = new String(output, StandardCharsets.UTF_8);
-//            System.out.println(str);
+            String str = new String(output, StandardCharsets.UTF_8);
+            System.out.println(str);
 
         }
         Operation.writeByesToFile(pathToOutputFile, output);
@@ -62,11 +62,11 @@ public class Main {
         byte[] plainTextBlock = new byte[16];
         byte[] CypherTextBlock = new byte[16];
 
-        /*String str = new String(cypher, StandardCharsets.UTF_8);
+        String str = new String(cypher, StandardCharsets.UTF_8);
         System.out.println(str);
         System.out.println();
         System.out.println("----------------");
-        System.out.println();*/
+        System.out.println();
 
         for(int i=0; i<16; i++){
             plainTextBlock[i] = plainText[i];

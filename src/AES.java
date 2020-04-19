@@ -16,8 +16,9 @@ public class AES {
         /* 1. convert to matrix  */
         byte[][] matrix = Operation.transformingToMatrix(block,4);
 
+        byte[][] matrixTras=Operation.matrixTransition1(matrix);
         /* 2. shift columns  */
-        byte[][] shiftedColumns = Operation.shiftColumns(matrix, Direction.Up);
+        byte[][] shiftedColumns = Operation.shiftColumns(matrixTras, Direction.Up);
 
         /* 3. convert back to vector  */
        byte[] backToVector = Operation.transformingToVector(shiftedColumns);
@@ -42,8 +43,9 @@ public class AES {
         /* 3. shift columns  */
         byte[][] shiftedColumns = Operation.shiftColumns(matrix, Direction.Down);
 
+        byte[][] matrixTran=Operation.matrixTransition2(shiftedColumns);
         /* 3. convert back to vector  */
-        byte[] backToVector = Operation.transformingToVector(shiftedColumns);
+        byte[] backToVector = Operation.transformingToVector(matrixTran);
 
         this.plaintext = backToVector;
         return plaintext;
