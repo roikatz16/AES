@@ -9,8 +9,8 @@ public class Test {
         //testShiftColumns();
         //testTransforms();
 //        testEncryption();
-        breakEncryption();
-        //matrixTran();
+        //breakEncryption();
+        matrixTran();
     }
 
     public static void breakEncryption() throws Exception {
@@ -151,11 +151,12 @@ public class Test {
      * tets
      */
     public static void matrixTran(){
-        byte[]temp={1,2,3,4};
+        byte[]temp={1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4};
         byte[][] ans=new byte[4][4];
-        for (int i=0;i<4;i++){
-            ans[i]=temp;
-        }
+//        for (int i=0;i<4;i++){
+//            ans[i]=temp;
+//        }
+        ans=Operation.matrixTransition1(temp);
         for (int i=0;i<4;i++){
             for(int j=0;j<4;j++){
                 System.out.print(ans[i][j]);
@@ -163,21 +164,13 @@ public class Test {
             System.out.println();
         }
         System.out.println("____________________________________________");
-        ans=Operation.matrixTransition1(ans);
-        for (int i=0;i<4;i++){
-            for(int j=0;j<4;j++){
-                System.out.print(ans[i][j]);
-            }
-            System.out.println();
+
+
+        temp=Operation.matrixTransition2(ans);
+        for(int i=0;i<temp.length;i++){
+            System.out.print(temp[i]);
         }
 
-        System.out.println("____________________________________________");
-        ans=Operation.matrixTransition2(ans);
-        for (int i=0;i<4;i++){
-            for(int j=0;j<4;j++){
-                System.out.print(ans[i][j]);
-            }
-            System.out.println();
-        }
+
     }
 }

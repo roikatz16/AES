@@ -107,22 +107,35 @@ public class Operation {
         os.close();
     }
 
-    public static byte[][] matrixTransition1(byte[][]matrix){
-        byte[][] temp = new byte[matrix.length][matrix[0].length];
+    public static byte[][] matrixTransition1(byte[]matrix){
+        byte[][] temp = new byte[4][4];
+        int flag=-1;
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                temp[j][i] = matrix[i][j];
+            if((i+4)%4==0 ){
+                flag++;
             }
-        }
+                int newIndex=(i+4)%4;
+                temp[newIndex][flag] = matrix[i];
+
+            }
         return temp;
     }
 
-    public static byte[][] matrixTransition2(byte[][]matrix){
-        byte[][] temp = new byte[matrix.length][matrix[0].length];
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                temp[i][j] = matrix[j][i];
+    public static byte[] matrixTransition2(byte[][]matrix){
+        byte[] temp = new byte[matrix[0].length*matrix.length];
+//        for (int i = 0; i < 4; i++) {
+//////            for (int j = 0; j <4 j++) {
+//////                temp[i][j] = matrix[j][i];
+//////            }
+//////        }
+        int flag=-1;
+        for (int i = 0; i < temp.length; i++) {
+            if((i+4)%4==0 ){
+                flag++;
             }
+            int newIndex=(i+4)%4;
+            temp[i] = matrix[newIndex][flag];
+
         }
         return temp;
     }
